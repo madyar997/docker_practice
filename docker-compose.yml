@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  docker_test:
+    container_name: docker_test
+    image: docker_practice:latest
+    ports:
+      - "8080:8080"
+    depends_on:
+      - docker_db
+
+  docker_db:
+    container_name: docker_db
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./pg_data:/var/lib/postgresql
